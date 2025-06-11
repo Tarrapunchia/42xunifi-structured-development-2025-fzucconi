@@ -1,4 +1,5 @@
 #include "filesystem.h"
+#include <stdlib.h>
 
 FSNode *create_file(const char *name, int size)
 {
@@ -71,6 +72,14 @@ int main()
     add_child(root, root_f1);
     add_child(root, root_fld);
     add_child(root_fld, root_fld_f2);
+    free(root->name);
+    free(root);
+    free(root_f1->name);
+    free(root_f1);
+    free(root_fld->name);
+    free(root_fld);
+    free(root_fld_f2->name);
+    free(root_fld_f2);
 }
 
 #endif // TEST

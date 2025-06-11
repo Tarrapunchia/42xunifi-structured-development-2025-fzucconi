@@ -29,8 +29,8 @@ GradeNode *compute_distribution(const char **mapped_grades, int size)
             }
             free(mapped_grades);
         }
-    }
         return NULL;
+    }
     GradeNode *buf = head;
     int map[GRADE_SIZE] = {0};
     for (int i = 0; i < size; i++)

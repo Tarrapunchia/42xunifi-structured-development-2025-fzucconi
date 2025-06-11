@@ -1,4 +1,4 @@
-#include "grade_mapping.h"
+#include "grade_map.h"
 
 void PlusMinus(const int *scores, const char **mapped_grades, unsigned int size)
 {
@@ -61,27 +61,27 @@ void map_scores(const int *scores, int size, GradeMapper mapper, const char **ma
 int main()
 {
     const int scores[6] = {89, 65, 15, 100, 22, 77};
-    const char **grades = malloc(sizeof(char *) * 6);
+    const char **evaluations = malloc(sizeof(char *) * 6);
     
     // plusminus
     printf("[PLUSMINUS]\n");
     GradeMapper mapper = PLUSMINUS;
-    map_scores(scores, 6, mapper, grades);
+    map_scores(scores, 6, mapper, evaluations);
     for (int i = 0; i < 6; i++)
-        printf("Score: %d\t Grade: %s\n", scores[i], grades[i]);
+        printf("Score: %d\t Grade: %s\n", scores[i], evaluations[i]);
 
     // passfail
     printf("\n[PASSFAIL]\n");
     mapper = PASSFAIL;
-    map_scores(scores, 6, mapper, grades);
+    map_scores(scores, 6, mapper, evaluations);
     for (int i = 0; i < 6; i++)
-        printf("Score: %d\t Grade: %s\n", scores[i], grades[i]);
+        printf("Score: %d\t Grade: %s\n", scores[i], evaluations[i]);
 
     // standard
     printf("\n[STANDARD]\n");
     mapper = STANDARD;
-    map_scores(scores, 6, mapper, grades);
+    map_scores(scores, 6, mapper, evaluations);
     for (int i = 0; i < 6; i++)
-        printf("Score: %d\t Grade: %s\n", scores[i], grades[i]);
+        printf("Score: %d\t Grade: %s\n", scores[i], evaluations[i]);
 }
 #endif // DEBUG

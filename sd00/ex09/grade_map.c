@@ -54,34 +54,3 @@ void map_scores(const int *scores, int size, GradeMapper mapper, const char **ma
         break;
     }
 }
-
-// TO TEST COMPILE WITH gcc -W -W -W -D DEBUG
-#ifdef DEBUG
-
-int main()
-{
-    const int scores[6] = {89, 65, 15, 100, 22, 77};
-    const char **grades = malloc(sizeof(char *) * 6);
-    
-    // plusminus
-    printf("[PLUSMINUS]\n");
-    GradeMapper mapper = PLUSMINUS;
-    map_scores(scores, 6, mapper, grades);
-    for (int i = 0; i < 6; i++)
-        printf("Score: %d\t Grade: %s\n", scores[i], grades[i]);
-
-    // passfail
-    printf("\n[PASSFAIL]\n");
-    mapper = PASSFAIL;
-    map_scores(scores, 6, mapper, grades);
-    for (int i = 0; i < 6; i++)
-        printf("Score: %d\t Grade: %s\n", scores[i], grades[i]);
-
-    // standard
-    printf("\n[STANDARD]\n");
-    mapper = STANDARD;
-    map_scores(scores, 6, mapper, grades);
-    for (int i = 0; i < 6; i++)
-        printf("Score: %d\t Grade: %s\n", scores[i], grades[i]);
-}
-#endif // DEBUG

@@ -14,23 +14,28 @@ int create_node(GradeNode *node, int count, const char *name)
     return 1;
 }
 
+void ft_free_matrix(const char **map, int size)
+{
+    if (map)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            if (map[i])
+                free((void *)map[i]);
+        }
+        free(map);
+    }
+}
+
 GradeNode *compute_distribution(const char **mapped_grades, int size)
 {
     if (!mapped_grades)
         return NULL;
     GradeNode *head = 0;
     head = malloc(sizeof(GradeNode));
-    if (!head)
+    if (head == NULL)
     {
-        if (mapped_grades)
-        {
-            for (int i = 0; i < size; i++)
-            {
-                if (mapped_grades[i])
-                    free((void *)mapped_grades[i]);
-            }
-            free(mapped_grades);
-        }
+        ft_free_matrix(mapped_grades, size);
         return NULL;
     }
     GradeNode *buf = head;

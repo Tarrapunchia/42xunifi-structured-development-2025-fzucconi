@@ -7,6 +7,8 @@ int is_special(char c)
 
 PwStatus validate(const char *new_pw, const char *curr_pw)
 {
+    if (!curr_pw)
+        return VALID;
     PwStatus pw_stat = INVALID_WEAK;
     t_valid valid = 0x00;
     int i = 0;

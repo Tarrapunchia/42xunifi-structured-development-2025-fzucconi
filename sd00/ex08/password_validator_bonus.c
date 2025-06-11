@@ -56,36 +56,37 @@ int minDis(const char* new_pw, const char* old_pw, int n, int m)
 
 int	ft_strlen(const char *s)
 {
-	int	i;
+	int	i = 0;
 
-	if (s == 0)
-		return (0);
-	i = 0;
+	if (s == NULL)
+		return 0;
 	while (s[i])
 		i++;
-	return (i);
+	return i;
 }
 
 PwStatus validate_password(const char *new_pw, PasswordHistory *head)
 {
     PwStatus status = 0x00;
-    if (!new_pw || !head || !head)
-        return (FAILURE);
+    if (!new_pw || !head)
+        return FAILURE;
     status = validate(new_pw, (const char*)head->pw);
     if (status == INVALID_WEAK)
-        return (status);
+        return status;
     int len1 = ft_strlen(new_pw);
     PasswordHistory *buf = head;
-    for (int i = 0; buf && i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
         int len2 = 0;
         len2 = ft_strlen((const char*)buf->pw);
         if (minDis(new_pw, (const char*)buf->pw, len1, len2) < 2)
             status = INVALID_SIMILAR;
         buf = buf->next;
+        if (!buf)
+            break;
     }
 
-    return (status);
+    return status;
 }
 
 // TO TEST COMPILE WITH gcc -W -W -W -D TEST
@@ -100,8 +101,8 @@ PasswordHistory *add_pw_to_history(PasswordHistory *head, const char *pw)
         head = malloc(sizeof(PasswordHistory));
         if (!head)
             return head;
-        head->pw = malloc(ft_strlen(pw));
-        strncpy(head->pw, pw, ft_strlen(pw));
+        head->pw = malloc(ft_strlen(pw) + 1);
+        strncpy(head->pw, pw, ft_strlen(pw) + 1);
         head->next = 0;
         return head;
     }
@@ -111,8 +112,8 @@ PasswordHistory *add_pw_to_history(PasswordHistory *head, const char *pw)
         buf = malloc(sizeof(PasswordHistory));
         if (!buf)
             return head;
-        buf->pw = malloc(ft_strlen(pw)); 
-        strncpy(buf->pw, pw, ft_strlen(pw));
+        buf->pw = malloc(ft_strlen(pw) + 1); 
+        strncpy(buf->pw, pw, ft_strlen(pw) + 1);
         buf->next = head;
         return buf;
     }
@@ -120,12 +121,27 @@ PasswordHistory *add_pw_to_history(PasswordHistory *head, const char *pw)
 
 int main()
 {
-    char *old[] = {"Ciao123@", "NONNAa1@@", "Canide23@", 0};
-    PasswordHistory *head = 0;
+    PasswordHistory *head = NULL;
+    PasswordHistory *buf = NULL;
     head = add_pw_to_history(head, "Ciao123@");
     head = add_pw_to_history(head, "NONNAa1@@");
     head = add_pw_to_history(head, "Canide23@");
     const char new[] = "Ciao124@";
-    printf("Old pw: %s, new pw: %s\nvalid? %d\n", *old, new, validate_password(new, head));
+    buf = head;
+    printf("Last 3 passwords (if present):\n");
+    while (buf)
+    {
+        printf("\t- %s\n", buf->pw);
+        buf = buf->next;
+    }
+    printf("New Password: %s\n", new);
+    printf("result: %d\n", validate_password(new, head));
+    while (head)
+    {
+        buf = head->next;
+        free(head->pw);
+        free(head);
+        head = buf;
+    }
 }
 #endif // TEST

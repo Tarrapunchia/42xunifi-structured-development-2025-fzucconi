@@ -103,40 +103,40 @@ void free_distribution(GradeNode *head)
 int main()
 {
     const int scores[6] = {89, 65, 15, 100, 22, 77};
-    const char **grades = malloc(sizeof(char *) * 6);
+    const char **evaluations = malloc(sizeof(char *) * 6);
     
     // plusminus
     printf("[PLUSMINUS]\n");
     GradeMapper mapper = PLUSMINUS;
-    map_scores(scores, 6, mapper, grades);
+    map_scores(scores, 6, mapper, evaluations);
     for (int i = 0; i < 6; i++)
-        printf("Score: %d\t Grade: %s\n", scores[i], grades[i]);
+        printf("Score: %d\t Grade: %s\n", scores[i], evaluations[i]);
     printf("\n[PLUSMINUS BONUS]\n");
-    GradeNode *head = compute_distribution(grades, 6);
+    GradeNode *head = compute_distribution(evaluations, 6);
     print_distribution(head);
     free_distribution(head);
 
     // passfail
     printf("\n[PASSFAIL]\n");
     mapper = PASSFAIL;
-    map_scores(scores, 6, mapper, grades);
+    map_scores(scores, 6, mapper, evaluations);
     for (int i = 0; i < 6; i++)
-        printf("Score: %d\t Grade: %s\n", scores[i], grades[i]);
+        printf("Score: %d\t Grade: %s\n", scores[i], evaluations[i]);
     printf("\n[PASSFAIL BONUS]\n");
-    head = compute_distribution(grades, 6);
+    head = compute_distribution(evaluations, 6);
     print_distribution(head);
     free_distribution(head);
 
     // standard
     printf("\n[STANDARD]\n");
     mapper = STANDARD;
-    map_scores(scores, 6, mapper, grades);
+    map_scores(scores, 6, mapper, evaluations);
     for (int i = 0; i < 6; i++)
-        printf("Score: %d\t Grade: %s\n", scores[i], grades[i]);
+        printf("Score: %d\t Grade: %s\n", scores[i], evaluations[i]);
     printf("\n[STANDARD BONUS]\n");
-    head = compute_distribution(grades, 6);
+    head = compute_distribution(evaluations, 6);
     print_distribution(head);
     free_distribution(head);
-    free(grades);
+    free(evaluations);
 }
 #endif// !TEST

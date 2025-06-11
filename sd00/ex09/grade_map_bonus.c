@@ -29,6 +29,8 @@ GradeNode *compute_distribution(const char **mapped_grades, int size)
             }
             free(mapped_grades);
         }
+        if (head)
+            free(head);
         return NULL;
     }
     GradeNode *buf = head;

@@ -16,9 +16,11 @@ int create_node(GradeNode *node, int count, const char *name)
 
 GradeNode *compute_distribution(const char **mapped_grades, int size)
 {
+    if (!mapped_grades)
+        return NULL;
     GradeNode *head = 0;
     head = malloc(sizeof(GradeNode));
-    if (!head || !mapped_grades)
+    if (!head)
     {
         if (mapped_grades)
         {
@@ -29,8 +31,6 @@ GradeNode *compute_distribution(const char **mapped_grades, int size)
             }
             free(mapped_grades);
         }
-        if (head)
-            free(head);
         return NULL;
     }
     GradeNode *buf = head;

@@ -96,13 +96,14 @@ PasswordHistory *add_pw_to_history(PasswordHistory *head, const char *pw)
 {
     if (!pw)
         return head;
+    int len = ft_strlen(pw) + 1;
     if (!head)
     {
         head = malloc(sizeof(PasswordHistory));
         if (!head)
             return head;
-        head->pw = malloc(ft_strlen(pw) + 1);
-        strncpy(head->pw, pw, ft_strlen(pw) + 1);
+        head->pw = malloc(len);
+        strncpy(head->pw, pw, len);
         head->next = 0;
         return head;
     }
@@ -112,8 +113,8 @@ PasswordHistory *add_pw_to_history(PasswordHistory *head, const char *pw)
         buf = malloc(sizeof(PasswordHistory));
         if (!buf)
             return head;
-        buf->pw = malloc(ft_strlen(pw) + 1); 
-        strncpy(buf->pw, pw, ft_strlen(pw) + 1);
+        buf->pw = malloc(len); 
+        strncpy(buf->pw, pw, len);
         buf->next = head;
         return buf;
     }

@@ -23,7 +23,6 @@ GradeNode *compute_distribution(const char **mapped_grades, int size)
     int map[GRADE_SIZE] = {0};
     for (int i = 0; i < size; i++)
     {
-        int len = strlen(mapped_grades[i]);
         if (strcmp(mapped_grades[i], grades[A_P]) == 0)      { map[A_P]++; }
         else if (strcmp(mapped_grades[i], grades[A]) == 0)   { map[A]++; }
         else if (strcmp(mapped_grades[i], grades[B_P]) == 0) { map[B_P]++; }

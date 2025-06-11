@@ -1,4 +1,5 @@
 #include "grade_map.h"
+#include <stdlib.h>
 
 int create_node(GradeNode *node, int count, const char *name)
 {
@@ -18,7 +19,18 @@ GradeNode *compute_distribution(const char **mapped_grades, int size)
     GradeNode *head = 0;
     head = malloc(sizeof(GradeNode));
     if (!head || !mapped_grades)
-        return 0;
+    {
+        if (mapped_grades)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                if (mapped_grades[i])
+                    free((void *)mapped_grades[i]);
+            }
+            free(mapped_grades);
+        }
+    }
+        return NULL;
     GradeNode *buf = head;
     int map[GRADE_SIZE] = {0};
     for (int i = 0; i < size; i++)
@@ -112,6 +124,8 @@ int main()
         printf("Score: %d\t Grade: %s\n", scores[i], evaluations[i]);
     printf("\n[PLUSMINUS BONUS]\n");
     GradeNode *head = compute_distribution(evaluations, 6);
+    if (!head)
+        return 0;
     print_distribution(head);
     free_distribution(head);
 
@@ -123,6 +137,8 @@ int main()
         printf("Score: %d\t Grade: %s\n", scores[i], evaluations[i]);
     printf("\n[PASSFAIL BONUS]\n");
     head = compute_distribution(evaluations, 6);
+    if (!head)
+        return 0;
     print_distribution(head);
     free_distribution(head);
 
@@ -134,6 +150,8 @@ int main()
         printf("Score: %d\t Grade: %s\n", scores[i], evaluations[i]);
     printf("\n[STANDARD BONUS]\n");
     head = compute_distribution(evaluations, 6);
+    if (!head)
+        return 0;
     print_distribution(head);
     free_distribution(head);
     free(evaluations);

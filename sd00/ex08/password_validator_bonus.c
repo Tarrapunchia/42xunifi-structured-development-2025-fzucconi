@@ -134,6 +134,7 @@ int main()
         printf("\t- %s\n", buf->pw);
         buf = buf->next;
     }
+    buf = NULL;
     printf("New Password: %s\n", new);
     printf("result: %d\n", validate_password(new, head));
     while (head)

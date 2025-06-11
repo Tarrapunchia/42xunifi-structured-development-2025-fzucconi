@@ -3,7 +3,7 @@
 
 int compute_total_size(const FSNode *node)
 {
-    FSNode *buf = get_sibling(node);
+    const FSNode *buf = get_sibling(node);
     int size = 0;
 
     while (buf)
@@ -52,11 +52,13 @@ void free_filesystem(FSNode *node)
     {
         while (top->parent && top != top->parent)
             top = top->parent;
+        children = get_children(top);
         free(top->name);
         free(top);
         flag = 1;
     }
-    children = get_children(top);
+    else
+        children = get_children(top);
     while (children)
     {
         free_filesystem(children);
@@ -81,7 +83,7 @@ int main()
     add_child(root, root_fld);
     add_child(root_fld, root_fld_f2);
     add_child(root, root_fld2);
-    print_structure(root, 1);
+    print_structure(root, 0);
     free_filesystem(root_fld_f2);
 }
 

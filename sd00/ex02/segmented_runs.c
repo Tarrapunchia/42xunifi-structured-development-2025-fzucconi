@@ -29,7 +29,7 @@ void check_sequential(const int *arr, t_bool *flag, int *len, int *count, int de
 
 int count_segments(const int *arr, int size)
 {
-    int count, len = 0;
+    int count = 0, len = 0;
     t_bool flag = FALSE;
     
     size_t i = 0;
@@ -56,8 +56,12 @@ int count_segments(const int *arr, int size)
     return (count);
 }
 
-// int main()
-// {
-//     const int arr[] = {-1, -1, -1,2,3,4,-1,5,6,-1,1,2,3,4};
-//     printf("count %d\n", count_segments(arr, 14));
-// }
+// TO TEST COMPILE WITH gcc -W -W -W -D TEST
+#ifdef TEST
+
+int main()
+{
+    const int arr[] = {-1, -1, -1,2,3,4,-1,5,6,-1,1,2,3,4};
+    printf("count %d\n", count_segments(arr, 14));
+}
+#endif // TEST

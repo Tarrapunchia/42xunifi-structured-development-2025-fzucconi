@@ -122,12 +122,7 @@ The main execution flow:
 - The actual implementation of string conversion, file parsing, and user input is assumed to be in `utils.c/h`.
 - Input file format must follow the expected structure for a book entry.
 - The program will warn about malformed lines without crashing.
-
----
-
-## 📜 License
-
-MIT License (or your preferred license)
+- This is a generalization of the assignment and require further implementation to be fully functional
 
 ---
 

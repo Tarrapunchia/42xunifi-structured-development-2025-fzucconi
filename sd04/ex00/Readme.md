@@ -1,95 +1,136 @@
-📚 Book Library Program – Documentation
-🧩 Purpose
-This program loads a library of books from a file and allows the user to search for books by title or author through a terminal-based interface. Results are displayed iteratively. The overall flow is controlled through modular functions.
+# 📚 Book Library Program
 
-🧠 Program Flow Overview
-The main execution flow is as follows:
+## 🧩 Overview
 
-✅ Argument validation – check_argv
+This program loads a library of books from a file and allows the user to search for books by **title** or **author** through a command-line interface. It supports iterative search results and validates file input at runtime.
 
-📂 Open the input file – open_file
+---
 
-📚 Load the book entries into memory – populate_library
+## 🚀 Features
 
-🔎 User interface for searching – user_search
+- Load book entries from a file (`file.txt`)
+- Search books by:
+  - **Author**
+  - **Title**
+- Interactive menu-driven interface
+- Handles malformed input gracefully
+- Clean memory management
 
-🧹 Free allocated resources – free_library
+---
 
-🚪 Exit the program
+## 🛠️ Compilation
 
-This structure matches the structure chart you've provided.
+Ensure you have a C compiler installed (e.g., `gcc`). Then compile the program along with its dependencies:
 
-🔍 Main Functions Description
-check_argv(int argc, const char** argv)
-Ensures that exactly one argument is passed (the file name).
+```bash
+gcc -Wall -Wextra -Werror main.cpp utils.c -o book_library
+```
 
-Also handles --help and -h options by printing usage instructions and exiting.
+---
 
-Returns a status flag (OK or KO).
+## 🧪 Usage
 
-open_file(const char* name, int *status)
-Opens the file in read-only mode (O_RDONLY) if the status is still valid.
+```bash
+./book_library file.txt
+```
 
-Returns a file descriptor (int fd) to be used later for reading.
+Or, to show help:
 
-populate_library(int fd, int status, t_book books[LIBRARY_SIZE])
-Reads lines from the file (using get_next_line) and populates the books array.
+```bash
+./book_library --help
+./book_library -h
+```
 
-Calls add_book(line, id, books) to process each line and fill the library.
+---
 
-Stops reading either when end-of-file is reached or when the library is full.
+## 🧠 Program Structure
 
-add_book(const char *line, int id, t_book books[])
-Processes each line:
+### `main()`
 
-Converts the line to lowercase.
+The main execution flow:
 
-Validates its format.
+1. Validate arguments
+2. Open the book file
+3. Populate the internal book library
+4. Allow user interaction to search books
+5. Free allocated resources and exit
 
-Adds the book data to the library if the format is correct.
+---
 
-Prints an error to stderr if the format is invalid.
+## 📂 File Structure
 
-user_search(t_book books[], int status)
-Presents the user with a search menu:
+```
+📁 project/
+├── main.cpp
+├── utils.h
+├── utils.c
+├── file.txt         # Input file with book entries
+└── README.md
+```
 
-Search by author
+---
 
-Search by title
+## 🧩 Function Summary
 
-Exit
+### `check_argv(argc, argv)`
+- Validates command-line arguments.
+- Handles help flags.
+- Returns status (`OK` or `KO`).
 
-Depending on the user's choice, it:
+### `open_file(name, &status)`
+- Opens the input file if status is valid.
+- Returns file descriptor.
 
-Prompts for a search string.
+### `populate_library(fd, status, books[])`
+- Reads the file line-by-line.
+- Validates and parses book entries.
+- Calls `add_book(...)` for each line.
 
-Calls print_book_infos(...) with the appropriate search criteria.
+### `add_book(line, id, books[])`
+- Converts lines to lowercase.
+- Checks formatting.
+- Adds book to the array if valid.
 
-print_book_infos(t_book *books, const char* name, t_selection selection)
-Performs the actual search loop using search_book.
+### `user_search(books[], status)`
+- Displays an interactive menu.
+- Asks the user to choose search type.
+- Prompts for a search string.
+- Calls `print_book_infos(...)`.
 
-Displays each matching book.
+### `print_book_infos(books, name, selection)`
+- Repeatedly calls `search_book(...)` to find and display all matches.
 
-Continues to search from the last found index to allow multiple results.
+### `search_book(books, query, selection)`
+- Implements logic to search by title or author.
+- Returns index of match or `-1`.
 
-search_book(t_book *books, const char* query, t_selection selection)
-Implements the search logic, depending on whether it's by title or author.
+### `free_library(books)`
+- Frees dynamically allocated memory for book data.
 
-Returns the index of a matching book, or -1 if none is found.
+---
 
-free_library(t_book *books)
-Frees any dynamically allocated memory for book titles and authors.
+## 💾 Data Types
 
-✅ Exit Conditions
-If all steps complete successfully, the program exits with OK.
+- `t_book`: Struct containing a book's metadata.
+- `t_selection`: Enum or flags: `AUTHOR`, `TITLE`, `EXIT`, `IDLE`.
+- `LIBRARY_SIZE`: Constant that defines the max number of books allowed.
 
-Otherwise, it exits with KO, signaling a failure (e.g., invalid input or file issues).
+---
 
-🧠 Data Structures
-The code references:
+## 📌 Notes
 
-t_book: a structure that holds book metadata (likely title, author, etc.)
+- The actual implementation of string conversion, file parsing, and user input is assumed to be in `utils.c/h`.
+- Input file format must follow the expected structure for a book entry.
+- The program will warn about malformed lines without crashing.
 
-t_selection: an enum or flag indicating the current search mode (AUTHOR, TITLE, EXIT, IDLE)
+---
 
-LIBRARY_SIZE: a constant defining the maximum number of books that can be loaded
+## 📜 License
+
+MIT License (or your preferred license)
+
+---
+
+## 👨‍💻 Author
+
+Your Name – [your.email@example.com](mailto:your.email@example.com)

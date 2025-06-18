@@ -1,25 +1,25 @@
 #ifndef UTILS_H
 # define UTILS_H
-# define CONTACTS_SIZE 1000
+# define MOVIES_SIZE 1000
 
-typedef struct s_contact
+typedef struct s_movie
 {
     int     id;
-    char    *name;
-    char    *phone;
-    char    *email;
-    char    *city;
-    char    *address;
-}   t_contact;
+    char    *title;
+    char    *genre;
+    int     watched;
+    int     rating;
+    char    *date;
+}   t_movie;
 
 typedef enum e_selection : int
 {
     LIST_ALL,
     SEARCH_NAME,
     SEARCH_CITY,
-    ADD_CONTACT,
-    EDIT_CONTACT,
-    DELETE_CONTACT,
+    ADD_movie,
+    EDIT_movie,
+    DELETE_movie,
     SAVE,
     EXIT = 9
 }   t_selection;
@@ -27,11 +27,12 @@ typedef enum e_selection : int
 typedef enum e_flags
 {
     ID      = 0x01,
-    PERSON  = 0x10,
-    CITY    = 0x100,
-    EMAIL   = 0x1000,
-    PHONE   = 0x10000,
-    CORRECT = 0x11111,
+    TITLE   = 0x10,
+    GENRE   = 0x100,
+    WATCHED = 0x1000,
+    RATING  = 0x10000,
+    DATE    = 0x100000,
+    CORRECT = 0x111111,
     ERROR   = 0x00
 }   t_bit_flag;
 
@@ -54,32 +55,32 @@ int open_file(const char* name, int *status);
 /****************************************************************************************
  * Checks if a given id is already used and returns ERROR if it is else ID (t_bit_flag) *
  ****************************************************************************************/
-t_bit_flag  check_id(int id, t_contact *contacts);
+t_bit_flag  check_id(int id, t_movie *movies);
 
 /******************************************************************
- * Checks if a given name or city is non empty after trimming     *
- * and returns ERROR if it is else PERSON or ADDRESS (t_bit_flag) *
+ * Checks if a given title or genre is non empty after trimming   *
+ * and returns ERROR if it is else TITLE or GENRE (t_bit_flag)    *
  ******************************************************************/
 t_bit_flag  check_str(const char* str);
 
 /****************************************************************************************
- * Checks that phone use only digits and typical symbols and include at least one digit *
- * and returns ERROR if not or PHONE (t_bit_flag)                                       *
+ * Checks that t_movie::watched is exactly 0 or 1                                       *
+ * and returns ERROR if not or WHATCHED (t_bit_flag)                                    *
  ****************************************************************************************/
-t_bit_flag  check_phone(const char* phone);
+t_bit_flag  check_flag(const char* phone);
 
 /****************************************************************************************
- * Checks that email has one '@' with non-empty local and domain parts and at least one *
- * dot in the domain and returns ERROR if not or EMAIL (t_bit_flag)                     *
+ * Checks that if marked watched, rating id an integer from 1 to 10 (otherwise 0)       *
+ * dot in the domain and returns ERROR if not or RATING (t_bit_flag)                    *
  ****************************************************************************************/
-t_bit_flag  check_mail(const char* mail);
+t_bit_flag  check_rating(const char* mail);
 
 /***************************************************************************************************
  * Checks the correctness of the entry passed using the t_bit_flag bitflag, invoking sequentially: *
  *     - check_id(...);                                                                            *
- *     - check_str(...); twice, once for the contact name and once for the city name               *
- *     - check_phone(...);                                                                         *
- *     - check_mail(...);                                                                          *
+ *     - check_str(...); twice, once for the movie name and once for the genre                     *
+ *     - check_rating(...);                                                                        *
+ *     - check_flag(...);                                                                          *
  * and putting the results in & with a t_bit_flag flag initialized to 0x00                         *
  * the return is flag == CORRECT (KO if not equal, OK if equal)                                    *
  ***************************************************************************************************/
@@ -88,59 +89,59 @@ int  check_correctness(const char* line);
 /**********************************************************************************
 * // 1. convert the string line to its corresponding lowcase string                 *
 * // 2. checks if the line format is OK using check correctness(...)                *
-* //  2.OK add the contact to the contacts in the first unused spot                 *
-* //  2.KO print an error msg on the stderr to warn the user that the given contact *
+* //  2.OK add the movie to the movies in the first unused spot                 *
+* //  2.KO print an error msg on the stderr to warn the user that the given movie *
 * //       entry wasn't correctly formatted                                         *
 **********************************************************************************/
-void add_contact(const char *line, t_contact contacts[CONTACTS_SIZE]);
+void add_movie(const char *line, t_movie movies[MOVIES_SIZE]);
 
 /**********************************************************
- * Ask for contact details and passes to add contact(...) *
+ * Ask for movie details and passes to add movie(...) *
  **********************************************************/
-void set_contact(t_contact *contacts);
+void set_movie(t_movie *movies);
 
 /************************************************************************************
- * // Cycle since there are entries and the number of entries isn't >= CONTACTS_SIZE *
+ * // Cycle since there are entries and the number of entries isn't >= MOVIES_SIZE *
  ************************************************************************************/
-int populate_contacts(int fd, int status, t_contact contacts[CONTACTS_SIZE]);
+int populate_movies(int fd, int status, t_movie movies[MOVIES_SIZE]);
 
 /******************************************************************************
-* // logic for a contact search in the contactS, returns its index (or -1 if not *
+* // logic for a movie search in the movieS, returns its index (or -1 if not *
 * // found) so in the next search i can start searching from that index on,      *
 * // to scout for multiple possible solutions                                    *
 ******************************************************************************/
-int search_contact(t_contact *contacts, const char* query, t_selection selection);
+int search_movie(t_movie *movies, const char* query, t_selection selection);
 
 /***********************************************************************************************
- * Prints all the contacts info iterating on the contacts array using print_contact_infos(...) *
+ * Prints all the movies info iterating on the movies array using print_movie_infos(...) *
  ***********************************************************************************************/
-void list_all(t_contact *contacts);
+void list_all(t_movie *movies);
 
 /***********************************************************************************
 * // 1. Prints query string                                                             *
-* // 2. in a cycle, invokes search contact and prints the found contacts (or not found) *
-* //    keeping score of the average contact, the total number of records considered and*
+* // 2. in a cycle, invokes search movie and prints the found movies (or not found) *
+* //    keeping score of the average movie, the total number of records considered and*
 * //    the total amount spent in them                                                  *
 * // 3. At the end of the cicle prints the 3 parameters listed in point 2               *
 ***********************************************************************************/
-void    print_contact_infos(t_contact *contacts, const char* name,  t_selection selection);
+void    print_movie_infos(t_movie *movies, const char* name,  t_selection selection);
 
 /*******************************************************************************************
- * 1. Copies the "master" contact list in a temp contact list to use
+ * 1. Copies the "master" movie list in a temp movie list to use
  * 2. prints "menu" and asks the user for a choice between:                                *
- *  - list all contacts (by calling list_all(...))                                         *
- *  - search by name (multiple contacts possibly shown)  (using search_contatc(...))       *
- *  - search by city (multiple contacts possibly shown)  (using search_contatc(...))       *
- *  - add contact (using set_contact(...))                                                 *
- *  - edit contact (using search_contact and then using that id to edit the first found)   *
- *  - delete contact (same as edit contact)                                                *
- *  - save (copy the temporary contact list in the original contact list, overwrtiting it) *
+ *  - list all movies (by calling list_all(...))                                         *
+ *  - search by name (multiple movies possibly shown)  (using search_contatc(...))       *
+ *  - search by city (multiple movies possibly shown)  (using search_contatc(...))       *
+ *  - add movie (using set_movie(...))                                                 *
+ *  - edit movie (using search_movie and then using that id to edit the first found)   *
+ *  - delete movie (same as edit movie)                                                *
+ *  - save (copy the temporary movie list in the original movie list, overwrtiting it) *
  *  - exit                                                                                 *
  *******************************************************************************************/
-void    user_ui(t_contact contacts[CONTACTS_SIZE], int status);
+void    user_ui(t_movie movies[MOVIES_SIZE], int status);
 
 /**********************************************
- * Frees the memory allocated for the contactS *
+ * Frees the memory allocated for the movieS *
  **********************************************/
-void    free_contacts(t_contact *contacts);
+void    free_movies(t_movie *movies);
 #endif

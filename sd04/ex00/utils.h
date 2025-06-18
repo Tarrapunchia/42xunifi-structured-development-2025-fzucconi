@@ -39,12 +39,12 @@ void    print_instructions();
 /****
  *  Checks if argv are passed coherentely and if you are asking for the --help *
  ****/
-int check_argv(int argc, const char** argv)
+int check_argv(int argc, const char** argv);
 
 /*********************************************************************************
  * Tries to open the file passed as argument, update the status flag in the main *
  *********************************************************************************/
-int open_file(const char* name, int *status)
+int open_file(const char* name, int *status);
 
 /**********************************************************************************
 * // 1. convert the string line to its corresponding lowcase string              *

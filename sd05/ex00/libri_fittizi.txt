@@ -1,0 +1,100 @@
+1, Il mistero del tempo, Giorgio Mancini
+2, Il sussurro dei sogni, Luca Mancini
+3, Ombre sull'acqua, Alice Esposito
+4, Segreti nel vento, Giulia Romano
+5, Viaggio tra le stelle, Giorgio Mancini
+6, Il mistero del tempo, Luca Bianchi
+7, Segreti nel vento, Alice Bianchi
+8, L'ultimo faro, Elena Galli
+9, L'eco del silenzio, Elena Esposito
+10, L'eco del silenzio, Luca Rossi
+11, Viaggio tra le stelle, Davide Romano
+12, Il sussurro dei sogni, Alice Rossi
+13, Il sussurro dei sogni, Giorgio Ferrari
+14, Cuore di pietra, Giorgio Conti
+15, Cuore di pietra, Sara Verdi
+16, L'eco del silenzio, Davide Galli
+17, Cuore di pietra, Francesca Bianchi
+18, Cuore di pietra, Sara Esposito
+19, Cuore di pietra, Alice Esposito
+20, L'ultimo faro, Matteo Bianchi
+21, Il sussurro dei sogni, Davide Galli
+22, Il mistero del tempo, Francesca Rossi
+23, Segreti nel vento, Sara Rossi
+24, Trame di fuoco, Luca Rossi
+25, L'ultimo faro, Luca Conti
+26, Cuore di pietra, Alice Romano
+27, Il sussurro dei sogni, Luca Ferrari
+28, Ombre sull'acqua, Davide Galli
+29, Viaggio tra le stelle, Matteo Rossi
+30, Trame di fuoco, Giulia Esposito
+31, L'ultimo faro, Luca Romano
+32, Ombre sull'acqua, Davide Galli
+33, Cuore di pietra, Luca Bianchi
+34, La chiave nascosta, Luca Galli
+35, Trame di fuoco, Alice Galli
+36, Ombre sull'acqua, Giorgio Verdi
+37, Il mistero del tempo, Sara Russo
+38, L'ultimo faro, Elena Mancini
+39, Trame di fuoco, Francesca Verdi
+40, L'eco del silenzio, Giulia Bianchi
+41, Segreti nel vento, Matteo Conti
+42, La chiave nascosta, Alice Rossi
+43, L'eco del silenzio, Luca Rossi
+44, Cuore di pietra, Giulia Verdi
+45, Il mistero del tempo, Sara Rossi
+46, La chiave nascosta, Alice Galli
+47, Il sussurro dei sogni, Sara Ferrari
+48, L'ultimo faro, Giorgio Mancini
+49, Trame di fuoco, Matteo Romano
+50, Il sussurro dei sogni, Marco Galli
+51, Trame di fuoco, Elena Romano
+52, Viaggio tra le stelle, Luca Conti
+53, Ombre sull'acqua, Alice Rossi
+54, La chiave nascosta, Alice Bianchi
+55, Trame di fuoco, Francesca Esposito
+56, L'eco del silenzio, Luca Rossi
+57, Viaggio tra le stelle, Giorgio Ferrari
+58, Segreti nel vento, Giorgio Romano
+59, Segreti nel vento, Elena Bianchi
+60, Il sussurro dei sogni, Alice Rossi
+61, L'ultimo faro, Giulia Conti
+62, Ombre sull'acqua, Francesca Bianchi
+63, Cuore di pietra, Francesca Ferrari
+64, Il mistero del tempo, Giorgio Mancini
+65, Cuore di pietra, Alice Verdi
+66, Cuore di pietra, Giulia Russo
+67, Viaggio tra le stelle, Matteo Ferrari
+68, Ombre sull'acqua, Sara Galli
+69, Il sussurro dei sogni, Giorgio Verdi
+70, L'ultimo faro, Matteo Rossi
+71, Il mistero del tempo, Giorgio Ferrari
+72, L'eco del silenzio, Marco Rossi
+73, Cuore di pietra, Giorgio Conti
+74, La chiave nascosta, Matteo Romano
+75, Cuore di pietra, Matteo Russo
+76, Trame di fuoco, Sara Rossi
+77, Trame di fuoco, Alice Esposito
+78, La chiave nascosta, Francesca Romano
+79, Cuore di pietra, Giulia Ferrari
+80, Trame di fuoco, Matteo Conti
+81, Trame di fuoco, Alice Rossi
+82, Segreti nel vento, Francesca Romano
+83, Il sussurro dei sogni, Luca Romano
+84, L'eco del silenzio, Alice Verdi
+85, Segreti nel vento, Davide Mancini
+86, Viaggio tra le stelle, Luca Galli
+87, La chiave nascosta, Marco Rossi
+88, Trame di fuoco, Elena Galli
+89, Ombre sull'acqua, Sara Conti
+90, Segreti nel vento, Giorgio Russo
+91, Ombre sull'acqua, Matteo Esposito
+92, Il sussurro dei sogni, Matteo Russo
+93, Segreti nel vento, Elena Bianchi
+94, Cuore di pietra, Giorgio Romano
+95, L'ultimo faro, Alice Bianchi
+96, L'eco del silenzio, Elena Mancini
+97, Il sussurro dei sogni, Francesca Russo
+98, Il sussurro dei sogni, Giorgio Rossi
+99, Viaggio tra le stelle, Alice Verdi
+100, L'eco del silenzio, Marco Mancini

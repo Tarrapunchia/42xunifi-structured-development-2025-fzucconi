@@ -129,9 +129,10 @@ void    print_movie_infos(t_movie *movies, const char* name,  t_selection select
 /*******************************************************************************************
  * 1. Copies the "master" movie list in a temp movie list to use
  * 2. prints "menu" and asks the user for a choice between:                                *
- *  - list all movies (by calling list_all(...))                                         *
- *  - search by name (multiple movies possibly shown)  (using search_contatc(...))       *
- *  - search by city (multiple movies possibly shown)  (using search_contatc(...))       *
+ *  - list all movies by ascending id (by calling list_all(...)                            *
+ *  - search by title (multiple movies possibly shown)  (using search_movie(...))       *
+ *  - search by genre (multiple movies possibly shown)  (using search_movie(...))       *
+ *  - search by watched/unwatched (multiple movies possibly shown)(using search_movie(...))*
  *  - add movie (using set_movie(...))                                                 *
  *  - edit movie (using search_movie and then using that id to edit the first found)   *
  *  - delete movie (same as edit movie)                                                *
